@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fff8f3">
+<title>Diego & Meylin — Nuestros recuerdos</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div id="userGate" class="overlay">
+  <div class="gate">
+    <div class="monogram">D·M</div>
+    <h2>Bienvenido</h2>
+    <p class="muted">Para compartir y descargar recuerdos de la boda, escribe tu nombre o un usuario. <b>No necesitas contraseña.</b></p>
+    <input id="gateUser" class="input" maxlength="50" autocomplete="name" placeholder="Tu nombre o usuario">
+    <button id="enterBtn" class="btn primary" style="width:100%;margin-top:11px">Entrar a los recuerdos</button>
+    <div id="gateError" class="help"></div>
+  </div>
+</div>
+
+<main class="page">
+  <section class="hero">
+    <div class="monogram">D·M</div>
+    <h1>Diego <span class="amp">&</span> Meylin</h1>
+    <p class="subtitle">Un día, muchas miradas. Comparte las fotos y videos que capturaste y descarga los recuerdos que dejaron los demás invitados.</p>
+    <div class="userbar">
+      <span class="pill">♡ Invitado: <b id="currentUser">—</b></span>
+      <button id="changeUser" class="btn secondary" style="padding:8px 12px;min-height:auto">Cambiar usuario</button>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card section">
+      <h2>Comparte tus recuerdos</h2>
+      <p class="muted">Puedes subir varias fotos o videos. Los archivos grandes se dividen en bloques y se reintentan si la conexión falla.</p>
+      <div class="upload-actions">
+        <label class="btn secondary">🖼️ Elegir fotos o videos<input id="gallery" type="file" accept="image/*,video/*" multiple hidden></label>
+        <label class="btn secondary">📸 Cámara / video<input id="camera" type="file" accept="image/*,video/*" capture="environment" multiple hidden></label>
+      </div>
+      <div id="queue" class="queue"></div>
+      <button id="uploadBtn" class="btn primary" style="width:100%;margin-top:14px" disabled>Subir recuerdos</button>
+      <div id="notice" class="notice"></div>
+      <p class="help">Puedes subir archivos grandes. Mantén la página abierta hasta que cada archivo indique “Guardado”.</p>
+    </div>
+
+    <div class="card section">
+      <div class="row" style="align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+        <div>
+          <h2>Recuerdos de la boda</h2>
+          <p class="muted" style="margin:0">Todos los invitados que ingresen un usuario pueden ver y descargar estos archivos.</p>
+        </div>
+        <div class="stats"><span class="stat">Archivos <b id="count">0</b></span></div>
+      </div>
+      <div class="toolbar">
+        <input id="search" class="search" placeholder="Buscar archivo o usuario">
+      </div>
+      <div id="files" class="files"></div>
+    </div>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

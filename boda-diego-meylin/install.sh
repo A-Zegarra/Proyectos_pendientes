@@ -10,7 +10,7 @@ BASE="https://raw.githubusercontent.com/A-Zegarra/Proyectos_pendientes/boda-dieg
 
 echo "== Boda Diego & Meylin =="
 
-for cmd in node npm pm2 cloudflared curl python3; do
+for cmd in node npm pm2 cloudflared curl python3 openssl ss sudo; do
   command -v "$cmd" >/dev/null 2>&1 || { echo "Falta $cmd"; exit 1; }
 done
 
@@ -118,12 +118,18 @@ if [ -z "$TUNNEL" ]; then
 fi
 
 echo "Creando ruta DNS..."
-if ! sudo -H cloudflared tunnel route dns "$TUNNEL" "$HOST" >/tmp/boda-dns.log 2>&1; then
-  if ! getent ahosts "$HOST" >/dev/null 2>&1; then
-    cat /tmp/boda-dns.log
-    echo "La web local esta lista, pero Cloudflare no pudo crear el DNS."
-    exit 1
-  fi
+DNS_OK=0
+if cloudflared tunnel route dns "$TUNNEL" "$HOST" >/tmp/boda-dns.log 2>&1; then
+  DNS_OK=1
+elif sudo cloudflared tunnel route dns "$TUNNEL" "$HOST" >/tmp/boda-dns.log 2>&1; then
+  DNS_OK=1
+elif getent ahosts "$HOST" >/dev/null 2>&1; then
+  DNS_OK=1
+fi
+if [ "$DNS_OK" -ne 1 ]; then
+  cat /tmp/boda-dns.log
+  echo "La web local esta lista, pero Cloudflare no pudo crear el DNS."
+  exit 1
 fi
 
 sudo systemctl restart cloudflared

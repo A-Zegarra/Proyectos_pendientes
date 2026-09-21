@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f6f1ed">
+<title>Diego & Meylin — Recuerdos</title>
+<link rel="stylesheet" href="/static/styles.css?v=8">
+</head>
+<body>
+<div id="gate" class="overlay">
+  <div class="gate">
+    <div class="logo" style="margin:auto;width:58px;height:58px;font-size:20px">D·M</div>
+    <h2>Bienvenido</h2>
+    <p>Escribe tu nombre o usuario para subir, ver y descargar los recuerdos. No necesitas contraseña.</p>
+    <input id="gateUser" class="input" maxlength="50" placeholder="Tu nombre o usuario" autocomplete="name">
+    <button id="enterBtn" class="btn primary" style="width:100%;margin-top:10px">Entrar</button>
+    <div id="gateError" style="font-size:11px;color:var(--danger);margin-top:8px"></div>
+  </div>
+</div>
+
+<div id="viewer" class="viewer">
+  <div class="viewer-top">
+    <button id="closeViewer" class="viewer-btn">✕</button>
+    <div class="viewer-title"><b id="viewerName"></b><span id="viewerMeta"></span></div>
+    <a id="viewerDownloadTop" class="viewer-btn">↓</a>
+  </div>
+  <div id="viewerMedia" class="viewer-media">
+    <div id="viewerLoading" class="loader"><div class="spinner"></div></div>
+    <button id="viewerPrev" class="viewer-nav prev">‹</button>
+    <button id="viewerNext" class="viewer-nav next">›</button>
+  </div>
+  <div class="viewer-bottom">
+    <button id="viewerPrevBottom" class="btn secondary">←</button>
+    <a id="viewerDownload" class="btn primary">Descargar original</a>
+    <button id="viewerNextBottom" class="btn secondary">→</button>
+  </div>
+</div>
+
+<div class="app">
+<header class="top">
+  <div class="topbar">
+    <div class="brand-mini">
+      <div class="logo">D·M</div>
+      <div class="brand-text"><b>Diego & Meylin</b><span>Galería de recuerdos</span></div>
+    </div>
+    <button id="changeUser" class="user-chip">👤 <span id="currentUser">—</span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Diego <span class="amp">&</span> Meylin</h1>
+  <p>Comparte lo que viste, conserva lo que sentiste.</p>
+</section>
+
+<main class="content">
+  <section class="card">
+    <div class="card-head">
+      <h2>Subir recuerdos</h2>
+      <p>Selecciona primero. Revisa la cola. Luego confirma la subida.</p>
+    </div>
+    <div class="card-body">
+      <div class="step"><span class="step-num">1</span><b>Selecciona tus archivos</b></div>
+      <div class="pick-grid">
+        <label class="pick"><span>🖼️</span>Galería<small>Fotos y videos</small><input id="galleryInput" type="file" accept="image/*,video/*" multiple hidden></label>
+        <label class="pick"><span>📸</span>Cámara<small>Captura ahora</small><input id="cameraInput" type="file" accept="image/*,video/*" capture="environment" multiple hidden></label>
+      </div>
+
+      <div id="queueSummary" class="queue-summary">
+        <div><b id="queueCount">0 archivos</b><span id="queueSize"></span></div>
+        <button id="clearQueue" class="iconbtn" title="Vaciar cola">✕</button>
+      </div>
+
+      <div id="queue" class="queue"></div>
+
+      <div id="overall" class="overall">
+        <div class="overall-top"><span id="overallText">Preparando…</span><span id="overallPercent">0%</span></div>
+        <div class="progress"><div id="overallFill" class="bar"></div></div>
+      </div>
+
+      <div id="notice" class="notice"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>Galería</h2>
+      <p>Toca cualquier recuerdo para verlo a pantalla completa.</p>
+    </div>
+
+    <div class="gallery-tools">
+      <button class="chip active" data-filter="all">Todos</button>
+      <button class="chip" data-filter="image">Fotos</button>
+      <button class="chip" data-filter="video">Videos</button>
+      <button class="chip" data-filter="mine">Míos</button>
+    </div>
+
+    <input id="search" class="search" placeholder="Buscar archivo o usuario">
+    <div id="gallery" class="gallery"></div>
+  </section>
+</main>
+
+<div class="bottom">
+  <div class="bottom-inner">
+    <div class="bottom-info">
+      <b id="bottomTitle">Selecciona fotos o videos</b>
+      <span id="bottomSub">No hay archivos en la cola</span>
+    </div>
+    <button id="uploadBtn" class="btn primary" disabled>Subir</button>
+  </div>
+</div>
+</div>
+
+<script src="/static/app.js?v=8"></script>
+</body>
+</html>

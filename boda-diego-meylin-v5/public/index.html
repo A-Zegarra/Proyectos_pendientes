@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fff8f3">
+<title>Diego & Meylin — Nuestros recuerdos</title>
+<link rel="stylesheet" href="/static/styles.css?v=6">
+</head>
+<body>
+<div id="userGate" class="overlay">
+  <div class="gate">
+    <div class="monogram">D·M</div>
+    <h2>Bienvenido</h2>
+    <p class="muted">Escribe tu nombre o usuario para compartir, ver y descargar los recuerdos. <b>No necesitas contraseña.</b></p>
+    <input id="gateUser" class="input" maxlength="50" autocomplete="name" placeholder="Tu nombre o usuario">
+    <button id="enterBtn" class="btn primary" style="width:100%;margin-top:11px">Entrar a los recuerdos</button>
+    <div id="gateError" class="help"></div>
+  </div>
+</div>
+
+<div id="viewer" class="viewer">
+  <div class="viewer-top">
+    <button id="closeViewer" class="viewer-btn" aria-label="Cerrar">✕</button>
+    <div class="viewer-title"><b id="viewerName"></b><span id="viewerMeta"></span></div>
+    <a id="viewerDownloadTop" class="viewer-btn" aria-label="Descargar" title="Descargar">↓</a>
+  </div>
+  <div class="viewer-media" id="viewerMedia">
+    <div id="viewerLoading" class="viewer-loading"><div class="spinner"></div></div>
+    <button id="viewerPrev" class="viewer-nav viewer-prev">‹</button>
+    <button id="viewerNext" class="viewer-nav viewer-next">›</button>
+  </div>
+  <div class="viewer-bottom">
+    <button id="viewerPrevBottom" class="btn secondary">← Anterior</button>
+    <a id="viewerDownload" class="btn primary">⬇ Descargar original</a>
+    <button id="viewerNextBottom" class="btn secondary">Siguiente →</button>
+  </div>
+</div>
+
+<main class="page">
+  <section class="hero">
+    <div class="monogram">D·M</div>
+    <h1>Diego <span class="amp">&</span> Meylin</h1>
+    <p class="subtitle">Comparte tus fotos y videos y disfruta los recuerdos de este día especial.</p>
+    <div class="userbar">
+      <span class="pill">♡ Invitado: <b id="currentUser">—</b></span>
+      <button id="changeUser" class="btn secondary" style="padding:8px 12px;min-height:auto">Cambiar usuario</button>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card section">
+      <h2>Subir recuerdos</h2>
+      <p class="muted">Selecciona varias fotos o videos. Cada archivo muestra su avance y se reintenta automáticamente si la conexión falla.</p>
+      <div class="upload-actions">
+        <label class="btn secondary">🖼️ Fotos o videos<input id="gallery" type="file" accept="image/*,video/*" multiple hidden></label>
+        <label class="btn secondary">📸 Cámara / video<input id="camera" type="file" accept="image/*,video/*" capture="environment" multiple hidden></label>
+      </div>
+      <div id="queue" class="queue"></div>
+
+      <div id="overall" class="overall">
+        <div class="overall-head"><span id="overallText">Subiendo archivos…</span><span id="overallPercent">0%</span></div>
+        <div class="progress"><div id="overallFill" class="fill"></div></div>
+      </div>
+
+      <button id="uploadBtn" class="btn primary" style="width:100%;margin-top:14px" disabled>↑ Subir recuerdos</button>
+      <div id="notice" class="notice"></div>
+      <p class="help">No cierres la página hasta que cada archivo indique <b>Subido ✓</b>.</p>
+    </div>
+
+    <div class="card section">
+      <div class="row" style="align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+        <div>
+          <h2>Galería</h2>
+          <p class="muted" style="margin:0">Toca una foto o video para verlo a pantalla completa.</p>
+        </div>
+        <div class="stats"><span class="stat">Archivos <b id="count">0</b></span></div>
+      </div>
+      <div class="toolbar"><input id="search" class="search" placeholder="Buscar archivo o usuario"></div>
+      <div id="files" class="files"></div>
+    </div>
+  </section>
+</main>
+<script src="/static/app.js?v=6"></script>
+</body>
+</html>
